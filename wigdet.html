@@ -3,66 +3,65 @@
 <head>
 <title>Social Media Break</title>
 <style>
-body {
-  font-family: 'Arial', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 200vh; /* Increase height for scrolling */
-  margin: 0;
-  color: #333;
-}
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjusted height */
+    margin: 0;
+    color: #333;
+  }
 
-#title {
-  font-size: 2.5em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #96215a;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
+  #title {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #96215a;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
 
-#timer {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 15px 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+  #timer {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
-button {
-  padding: 12px 25px;
-  font-size: 1em;
-  margin: 8px;
-  cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  background-color: #007bff;
-  color: white;
-  transition: background-color 0.3s ease;
-}
+  button {
+    padding: 12px 25px;
+    font-size: 1em;
+    margin: 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
 
-button:hover {
-  background-color: #0056b3;
-}
+  button:hover {
+    background-color: #0056b3;
+  }
 
-#container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url('media-998990_1280.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 300px;
-  height: auto;
-  background-attachment: scroll; /* Background scrolls */
-}
-
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('media-998990_1280.jpg'); /* Ensure correct path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    height: auto;
+    background-attachment: scroll; /* Background scrolls */
+  }
 </style>
 </head>
 <body>
@@ -70,7 +69,6 @@ button:hover {
 <div id="title">Social Media Break</div>
 <div id="container">
   <div id="timer">00:00</div>
-
   <button onclick="startTimer(180)">3 Minutes</button>
   <button onclick="startTimer(300)">5 Minutes</button>
 </div>
@@ -79,40 +77,40 @@ button:hover {
 <audio id="finishSound" src="kitchen-timer-87485.mp3"></audio>
 
 <script>
-let countdownInterval;
-let timeLeft;
-let countdownSoundPlayed = false;
+  let countdownInterval;
+  let timeLeft;
+  let countdownSoundPlayed = false;
 
-function startTimer(duration) {
-  timeLeft = duration;
-  countdownSoundPlayed = false;
-  clearInterval(countdownInterval);
+  function startTimer(duration) {
+    timeLeft = duration;
+    countdownSoundPlayed = false;
+    clearInterval(countdownInterval);
 
-  updateTimerDisplay();
+    updateTimerDisplay();
 
-  countdownInterval = setInterval(() => {
-    timeLeft--;
+    countdownInterval = setInterval(() => {
+      timeLeft--;
 
-    if (timeLeft <= 0) {
-      clearInterval(countdownInterval);
-      document.getElementById('finishSound').play();
-      document.getElementById('timer').textContent = "Time's Up!";
-    } else {
-      updateTimerDisplay();
-      if (timeLeft <= 12 && !countdownSoundPlayed) {
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        document.getElementById('finishSound').play();
+        document.getElementById('timer').textContent = "Time's Up!";
+      } else {
+        updateTimerDisplay();
+        if (timeLeft <= 12 && !countdownSoundPlayed) {
           document.getElementById('countdownSound').play();
           countdownSoundPlayed = true;
+        }
       }
-    }
-  }, 1000);
-}
+    }, 1000);
+  }
 
-function updateTimerDisplay() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-  document.getElementById('timer').textContent = formattedTime;
-}
+  function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    document.getElementById('timer').textContent = formattedTime;
+  }
 </script>
 
 </body>
